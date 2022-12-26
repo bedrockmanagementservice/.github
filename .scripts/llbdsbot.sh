@@ -46,6 +46,10 @@ PRERELEASE=$(jq ".[0].prerelease" <<< "$DATA")
 PUBLISHED=$(jq ".[0].published_at" <<< "$DATA")
 URL=$(jq ".[0].html_url" <<< "$DATA")
 
+if [ -z "$TAGNAME" ]; then
+	exit 0;
+fi
+
 # Compare versions
 if [ "$CURRENTVERSION" = "$TAGNAME" ]; then
     echo "No new version found."
